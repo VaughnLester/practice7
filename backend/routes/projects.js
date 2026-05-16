@@ -14,7 +14,11 @@ router.get("/projects", getProjects);
 router.get("/:id", getProjectsByID);
 
 //method declared on the frontend 
-router.get("/:link/:title", createProject);
+//this is the form path on frontend form 
+
+router.post("/newproject", createProject);
+
+
 
 
 export {router};

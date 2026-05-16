@@ -1,5 +1,7 @@
 import { database } from "../database.js";
 
+
+//READ
 //get all projects
 export async function getProjects(req, res){
     try{
@@ -19,13 +21,13 @@ export async function getProjectsByID(req, res){
     catch(err){console.log(err);}
 }
 
-export async function createProject(req, res){
+//CREATE 
+export async function createProject(req,res){
+    //req.body is coming from the frontend FETCH request 
     try{
-        database.query(`INSERT INTO projects(link, title) VALUES ("${req.params.link}", "${req.params.title}")`);
+        console.log(`${req.body.link}", "${req.body.title}`);
+        database.query(`INSERT INTO projects(link, title) VALUES ("${req.body.link}", "${req.body.title}")`);
+        res.send(`created project ${req.body.title}`)
     }
-    catch(err){
-        console.log(err);
-        res.send(err);
-    }
-    res.send(`created project ${req.params.title}`)
+    catch(err){console.log(err);}
 }
